@@ -34,4 +34,9 @@ public class StudentController {
     public List<Student> getStudent(@PathVariable String name){
         return studentService.getStudentByLastName(name);
     }
+
+    @PostMapping("updateStudent")
+    public Student updateStudent(@RequestBody Student student){
+        return studentService.updateStudent(student);
+    }
 }

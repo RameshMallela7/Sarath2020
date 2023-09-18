@@ -30,5 +30,11 @@ public class StudentService {
         return studentRepository.findByLastName(name);
     }
 
+    public Student updateStudent(Student student) {
+       return studentRepository.save(student);
+    }
+
+
+
 
 }
