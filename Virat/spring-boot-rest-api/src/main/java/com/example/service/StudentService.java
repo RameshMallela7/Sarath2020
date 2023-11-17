@@ -13,11 +13,13 @@ import java.util.List;
 @Service
 public class StudentService {
 
-    @Autowired
-    private StudentRepository studentRepository;
+    private final ModelMapper modelMapper;
+    private final StudentRepository studentRepository;
 
-    @Autowired
-    private ModelMapper modelMapper;
+    public StudentService(ModelMapper modelMapper, StudentRepository studentRepository) {
+        this.modelMapper = modelMapper;
+        this.studentRepository = studentRepository;
+    }
 
     public StudentDto saveStudent(StudentDto studentDto){
         Student student = modelMapper.map(studentDto, Student.class);
