@@ -3,8 +3,8 @@ package com.example.controller;
 import com.example.dto.StudentDTO;
 import com.example.entity.Student;
 import com.example.service.StudentService;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,8 +13,11 @@ import java.util.List;
 @RequestMapping("student")
 public class StudentController {
 
-    @Autowired
-    private StudentService studentService;
+    private final StudentService studentService;
+
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
+    }
 
     @PostMapping("saveStudent")
     public String saveStudent(@RequestBody StudentDTO studentDto) throws JsonProcessingException {
@@ -22,7 +25,7 @@ public class StudentController {
     }
 
     @GetMapping("getAllStudents")
-    public List<StudentDTO> getAllStudents(){
+    public List<StudentDTO> getAllStudents() {
         return studentService.getAllStudents();
     }
 
