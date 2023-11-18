@@ -1,8 +1,9 @@
 package com.example.controller;
 
-import com.example.dto.StudentDto;
+import com.example.dto.StudentDTO;
 import com.example.entity.Student;
 import com.example.service.StudentService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,27 +17,27 @@ public class StudentController {
     private StudentService studentService;
 
     @PostMapping("saveStudent")
-    public StudentDto saveStudent(@RequestBody StudentDto studentDto) {
+    public String saveStudent(@RequestBody StudentDTO studentDto) throws JsonProcessingException {
         return studentService.saveStudent(studentDto);
     }
 
     @GetMapping("getAllStudents")
-    public List<StudentDto> getAllStudents(){
+    public List<StudentDTO> getAllStudents(){
         return studentService.getAllStudents();
     }
 
     @GetMapping("/getStudentById/{id}")
-    public StudentDto getStudent(@PathVariable Long id) {
+    public StudentDTO getStudent(@PathVariable Long id) {
         return studentService.getStudentById(id);
     }
 
     @GetMapping("/getStudentByLastName/{name}")
     public List<Student> getStudent(@PathVariable String name) {
-        return studentService.getStudentByLastName(name);
+        return studentService.getStudentByName(name);
     }
 
     @PostMapping("updateStudent")
-    public StudentDto updateStudent(@RequestBody StudentDto studentDto) {
+    public StudentDTO updateStudent(@RequestBody StudentDTO studentDto) {
         return studentService.updateStudent(studentDto);
     }
 
