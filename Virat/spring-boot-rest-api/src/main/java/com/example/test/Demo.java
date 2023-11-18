@@ -8,21 +8,7 @@ import java.util.List;
 public class Demo {
 
     public static void main(String[] args) {
-        System.out.println(ternary(20));
-    }
-
-    private static String ternary(int age) {
-        return age > 18 ? "adult" : "child";
-    }
-
-    private static void equals() {
-        String str1 = "sarath";
-        var str2 = "asha";
-        if(str1.equals(str2)){
-            System.out.println("Both strings are equal");
-        } else {
-            System.out.println("Both strings are notequal");
-        }
+        concurrentModificationException();
     }
 
     private static void concurrentModificationException() {

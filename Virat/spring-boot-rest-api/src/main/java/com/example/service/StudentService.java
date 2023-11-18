@@ -59,6 +59,4 @@ public class StudentService {
         return studentRepository.findAllById(ids);
     }
 
-
-
 }
