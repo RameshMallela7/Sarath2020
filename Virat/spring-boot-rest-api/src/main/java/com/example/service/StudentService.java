@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,11 +24,12 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public Optional<StudentDTO> saveStudent(StudentDTO studentDto) {
-        return Optional.ofNullable(studentDto)
-                .map(dto -> modelMapper.map(dto, Student.class))
-                .map(studentRepository::save)
-                .map(entity -> modelMapper.map(entity, StudentDTO.class));
+    public StudentDTO saveStudent(StudentDTO studentDto) {
+        studentDto.setDbTimeStamp(LocalDateTime.now());
+        Student student = modelMapper.map(studentDto, Student.class);
+        return modelMapper.map(studentRepository.save(student), StudentDTO.class);
+
+
     }
 
     public List<StudentDTO> getAllStudents() {
@@ -37,7 +39,7 @@ public class StudentService {
                 .toList();
     }
 
-    public StudentDTO getStudentById(Long id){
+    public StudentDTO getStudentById(Long id) {
         return studentRepository.findById(id)
                 .map(student -> modelMapper.map(student, StudentDTO.class))
                 .orElseThrow(() -> new StudentNotFoundException("Student not found with id : " + id));
@@ -55,7 +57,7 @@ public class StudentService {
                 .orElse(null); // or throw an exception or handle the null case appropriately
     }
 
-    public List<Student> getAllStudentsByIds(List<Long> ids){
+    public List<Student> getAllStudentsByIds(List<Long> ids) {
         return studentRepository.findAllById(ids);
     }
 

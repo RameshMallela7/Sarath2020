@@ -18,7 +18,7 @@ public class MailService {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo("sarathbabu.nasika7@gmail.com");
         message.setSubject("Spring boot application");
-        message.setText("Good night Sarath");
+        message.setText("Hai");
         javaMailSender.send(message);
         log.info("end sendMail");
         return "email sent successfully";

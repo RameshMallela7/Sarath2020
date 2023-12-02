@@ -3,11 +3,12 @@ package com.example.controller;
 import com.example.dto.StudentDTO;
 import com.example.entity.Student;
 import com.example.service.StudentService;
-
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("student")
@@ -20,8 +21,10 @@ public class StudentController {
     }
 
     @PostMapping("saveStudent")
-    public Optional<StudentDTO> saveStudent(@RequestBody StudentDTO studentDto) {
-        return studentService.saveStudent(studentDto);
+    public ResponseEntity<StudentDTO> saveStudent(@RequestBody @Valid StudentDTO studentDto) {
+        StudentDTO studentDTO = studentService.saveStudent(studentDto);
+        return new ResponseEntity<>(studentDTO, HttpStatus.CREATED);
+
     }
 
     @GetMapping("getAllStudents")
