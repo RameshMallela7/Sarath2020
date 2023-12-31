@@ -1,6 +1,7 @@
 package com.example.test;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Teststash {
 
@@ -8,5 +9,7 @@ public class Teststash {
         LocalDate date = LocalDate.now();
         System.out.println(date);
 
+        LocalDateTime dateAntTime = LocalDateTime.now();
+        System.out.println(dateAntTime);
     }
 }
