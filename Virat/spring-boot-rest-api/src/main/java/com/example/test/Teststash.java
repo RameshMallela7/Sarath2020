@@ -15,5 +15,8 @@ public class Teststash {
 
         LocalTime time = LocalTime.now();
         System.out.println(time);
+
+        LocalDate customLocalDate = LocalDate.of(2023, 12,31);
+        System.out.println(customLocalDate);
     }
 }
